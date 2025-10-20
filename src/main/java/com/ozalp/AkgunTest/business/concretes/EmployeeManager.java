@@ -1,20 +1,22 @@
 package com.ozalp.AkgunTest.business.concretes;
 
 import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.business.dtos.responses.EmployeeResponse;
+import com.ozalp.AkgunTest.business.mappers.EmployeeMapper;
 import com.ozalp.AkgunTest.business.rules.EmployeeRules;
 import com.ozalp.AkgunTest.common.Messages;
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.common.results.SuccessDataResult;
 import com.ozalp.AkgunTest.dataAccess.EmployeeRepository;
-import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
-import com.ozalp.AkgunTest.business.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.entities.concretes.Employee;
 import com.ozalp.AkgunTest.exceptions.errors.EmployeeNotFoundException;
-import com.ozalp.AkgunTest.business.mappers.EmployeeMapper;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,5 +48,15 @@ public class EmployeeManager implements EmployeeService {
         employeeRules.checkPhoneNumber(employee);
         employeeRules.checkSocialSecurityNumber(employee);
         return new SuccessDataResult<>(mapper.toResponse(repository.save(employee)));
+    }
+
+    @Override
+    public DataResult<List<EmployeeResponse>> getAll() {
+        List<Employee> employees = repository.findAll();
+        List<EmployeeResponse> employeeResponses = new ArrayList<>();
+        for(Employee employee: employees) {
+            employeeResponses.add(mapper.toResponse(employee));
+        }
+        return new SuccessDataResult<>(employeeResponses);
     }
 }
