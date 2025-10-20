@@ -1,4 +1,4 @@
-package com.ozalp.AkgunTest.dtos.responses;
+package com.ozalp.AkgunTest.business.dtos.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

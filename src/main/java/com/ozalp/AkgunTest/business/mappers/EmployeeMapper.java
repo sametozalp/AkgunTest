@@ -1,7 +1,7 @@
-package com.ozalp.AkgunTest.mappers;
+package com.ozalp.AkgunTest.business.mappers;
 
-import com.ozalp.AkgunTest.dtos.requests.CreateEmployeeRequest;
-import com.ozalp.AkgunTest.dtos.responses.EmployeeResponse;
+import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.business.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.entities.concretes.Employee;
 import org.mapstruct.Mapper;
 
