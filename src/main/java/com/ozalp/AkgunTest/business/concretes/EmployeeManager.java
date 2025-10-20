@@ -1,6 +1,7 @@
 package com.ozalp.AkgunTest.business.concretes;
 
 import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.business.rules.EmployeeRules;
 import com.ozalp.AkgunTest.common.Messages;
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.common.results.SuccessDataResult;
@@ -22,6 +23,7 @@ public class EmployeeManager implements EmployeeService {
 
     private final EmployeeRepository repository;
     private final EmployeeMapper mapper;
+    private final EmployeeRules employeeRules;
 
     @Transactional
     @Override
@@ -41,6 +43,8 @@ public class EmployeeManager implements EmployeeService {
     @Override
     public DataResult<EmployeeResponse> create(CreateEmployeeRequest request) {
         Employee employee = mapper.toEntity(request);
+        employeeRules.checkPhoneNumber(employee);
+        employeeRules.checkSocialSecurityNumber(employee);
         return new SuccessDataResult<>(mapper.toResponse(repository.save(employee)));
     }
 }
