@@ -1,10 +1,12 @@
 package com.ozalp.AkgunTest.business.concretes;
 
+import com.google.gson.Gson;
 import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
 import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
 import com.ozalp.AkgunTest.business.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.business.mappers.EmployeeMapper;
 import com.ozalp.AkgunTest.business.rules.EmployeeRules;
+import com.ozalp.AkgunTest.common.Constant;
 import com.ozalp.AkgunTest.common.Messages;
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.common.results.SuccessDataResult;
@@ -14,8 +16,10 @@ import com.ozalp.AkgunTest.exceptions.errors.EmployeeNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.UnifiedJedis;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +30,8 @@ public class EmployeeManager implements EmployeeService {
     private final EmployeeRepository repository;
     private final EmployeeMapper mapper;
     private final EmployeeRules employeeRules;
+    private final UnifiedJedis unifiedJedis;
+    private final Gson gson;
 
     @Transactional
     @Override
@@ -50,15 +56,26 @@ public class EmployeeManager implements EmployeeService {
         return new SuccessDataResult<>(mapper.toResponse(repository.save(employee)));
     }
 
+    // burası daha verimli olmalı
     @Override
     public DataResult<List<EmployeeResponse>> getAll() {
+
+        List<EmployeeResponse> employeeResponses = new ArrayList<>();
+        String redisJson = unifiedJedis.get(Constant.EMPLOYEES);
+
+        if (redisJson != null) { // bu ifi yazmak pek yönetilebilir gelmedi bana ama şimdilik böyle dursun
+            EmployeeResponse[] array = gson.fromJson(redisJson, EmployeeResponse[].class); // liste verince olmuyor ama dizilerde çalışıyormuş
+            employeeResponses = Arrays.asList(array);
+            return new SuccessDataResult<>(employeeResponses);
+        }
+
         // çok veride pagination kullanılabilir
         List<Employee> employees = repository.findAll();
-        List<EmployeeResponse> employeeResponses = new ArrayList<>();
         // for yerine streams kullanılabilir
-        for(Employee employee: employees) {
+        for (Employee employee : employees) {
             employeeResponses.add(mapper.toResponse(employee));
         }
+        unifiedJedis.setex(Constant.EMPLOYEES, Constant.CASH_TIME, gson.toJson(employeeResponses));
         return new SuccessDataResult<>(employeeResponses);
     }
 }
