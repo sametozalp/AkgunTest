@@ -52,8 +52,10 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public DataResult<List<EmployeeResponse>> getAll() {
+        // çok veride pagination kullanılabilir
         List<Employee> employees = repository.findAll();
         List<EmployeeResponse> employeeResponses = new ArrayList<>();
+        // for yerine streams kullanılabilir
         for(Employee employee: employees) {
             employeeResponses.add(mapper.toResponse(employee));
         }
