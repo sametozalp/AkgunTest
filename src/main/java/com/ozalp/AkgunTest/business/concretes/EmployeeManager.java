@@ -2,7 +2,11 @@ package com.ozalp.AkgunTest.business.concretes;
 
 import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
 import com.ozalp.AkgunTest.common.Messages;
+import com.ozalp.AkgunTest.common.results.DataResult;
+import com.ozalp.AkgunTest.common.results.SuccessDataResult;
 import com.ozalp.AkgunTest.dataAccess.EmployeeRepository;
+import com.ozalp.AkgunTest.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.entities.concretes.Employee;
 import com.ozalp.AkgunTest.exceptions.errors.EmployeeNotFoundException;
 import com.ozalp.AkgunTest.mappers.EmployeeMapper;
@@ -32,5 +36,11 @@ public class EmployeeManager implements EmployeeService {
     public Employee getById(UUID uuid) {
         return repository.findById(uuid)
                 .orElseThrow(() -> new EmployeeNotFoundException(Messages.EmployeeMessages.EMPLOYEE_NOT_FOUND));
+    }
+
+    @Override
+    public DataResult<EmployeeResponse> create(CreateEmployeeRequest request) {
+        Employee employee = mapper.toEntity(request);
+        return new SuccessDataResult<>(mapper.toResponse(repository.save(employee)));
     }
 }

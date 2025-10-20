@@ -1,6 +1,7 @@
 package com.ozalp.AkgunTest.mappers;
 
 import com.ozalp.AkgunTest.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.entities.concretes.Employee;
 import org.mapstruct.Mapper;
 
@@ -8,4 +9,6 @@ import org.mapstruct.Mapper;
 public interface EmployeeMapper {
 
     Employee toEntity(CreateEmployeeRequest request);
+
+    EmployeeResponse toResponse(Employee employee);
 }
