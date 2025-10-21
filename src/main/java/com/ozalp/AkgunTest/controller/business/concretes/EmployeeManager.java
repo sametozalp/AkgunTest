@@ -1,25 +1,21 @@
 package com.ozalp.AkgunTest.controller.business.concretes;
 
-import com.google.gson.Gson;
-import com.ozalp.AkgunTest.controller.business.abstracts.EmployeeService;
-import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
-import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
-import com.ozalp.AkgunTest.model.mappers.EmployeeMapper;
-import com.ozalp.AkgunTest.controller.business.rules.EmployeeRules;
-import com.ozalp.AkgunTest.common.Constant;
 import com.ozalp.AkgunTest.common.Messages;
+import com.ozalp.AkgunTest.common.employeeDataService.EmployeeGetDataManager;
+import com.ozalp.AkgunTest.common.exceptions.errors.EmployeeNotFoundException;
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.common.results.SuccessDataResult;
+import com.ozalp.AkgunTest.controller.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.controller.business.rules.EmployeeRules;
 import com.ozalp.AkgunTest.controller.dataAccess.EmployeeRepository;
+import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.model.entities.concretes.Employee;
-import com.ozalp.AkgunTest.common.exceptions.errors.EmployeeNotFoundException;
+import com.ozalp.AkgunTest.model.mappers.EmployeeMapper;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.UnifiedJedis;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,8 +26,7 @@ public class EmployeeManager implements EmployeeService {
     private final EmployeeRepository repository;
     private final EmployeeMapper mapper;
     private final EmployeeRules employeeRules;
-    private final UnifiedJedis unifiedJedis;
-    private final Gson gson;
+    private final EmployeeGetDataManager employeeGetDataManager;
 
     @Transactional
     @Override
@@ -56,26 +51,8 @@ public class EmployeeManager implements EmployeeService {
         return new SuccessDataResult<>(mapper.toResponse(repository.save(employee)));
     }
 
-    // burası daha verimli olmalı
     @Override
     public DataResult<List<EmployeeResponse>> getAll() {
-
-        List<EmployeeResponse> employeeResponses = new ArrayList<>();
-        String redisJson = unifiedJedis.get(Constant.EMPLOYEES);
-
-        if (redisJson != null) { // bu ifi yazmak pek yönetilebilir gelmedi bana ama şimdilik böyle dursun
-            EmployeeResponse[] array = gson.fromJson(redisJson, EmployeeResponse[].class); // liste verince olmuyor ama dizilerde çalışıyormuş
-            employeeResponses = Arrays.asList(array);
-            return new SuccessDataResult<>(employeeResponses);
-        }
-
-        // çok veride pagination kullanılabilir
-        List<Employee> employees = repository.findAll();
-        // for yerine streams kullanılabilir
-        for (Employee employee : employees) {
-            employeeResponses.add(mapper.toResponse(employee));
-        }
-        unifiedJedis.setex(Constant.EMPLOYEES, Constant.CASH_TIME, gson.toJson(employeeResponses));
-        return new SuccessDataResult<>(employeeResponses);
+        return new SuccessDataResult<>(employeeGetDataManager.getData());
     }
 }
