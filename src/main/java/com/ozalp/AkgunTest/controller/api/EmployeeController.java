@@ -1,7 +1,7 @@
 package com.ozalp.AkgunTest.controller.api;
 
-import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
-import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.controller.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

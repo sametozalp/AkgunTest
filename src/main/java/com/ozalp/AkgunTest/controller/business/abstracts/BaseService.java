@@ -1,6 +1,6 @@
-package com.ozalp.AkgunTest.business.abstracts;
+package com.ozalp.AkgunTest.controller.business.abstracts;
 
-import com.ozalp.AkgunTest.entities.abstracts.BaseEntity;
+import com.ozalp.AkgunTest.model.entities.abstracts.BaseEntity;
 
 import java.util.UUID;
 

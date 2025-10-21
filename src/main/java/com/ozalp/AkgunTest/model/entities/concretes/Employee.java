@@ -1,6 +1,6 @@
-package com.ozalp.AkgunTest.entities.concretes;
+package com.ozalp.AkgunTest.model.entities.concretes;
 
-import com.ozalp.AkgunTest.entities.abstracts.BaseEntity;
+import com.ozalp.AkgunTest.model.entities.abstracts.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -1,8 +1,8 @@
-package com.ozalp.AkgunTest.exceptions.handlers;
+package com.ozalp.AkgunTest.common.exceptions.handlers;
 
 import com.ozalp.AkgunTest.common.results.ErrorResult;
-import com.ozalp.AkgunTest.exceptions.errors.EmployeeNotFoundException;
-import com.ozalp.AkgunTest.exceptions.errors.RulesException;
+import com.ozalp.AkgunTest.common.exceptions.errors.EmployeeNotFoundException;
+import com.ozalp.AkgunTest.common.exceptions.errors.RulesException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

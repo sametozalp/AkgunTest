@@ -1,18 +1,18 @@
-package com.ozalp.AkgunTest.business.concretes;
+package com.ozalp.AkgunTest.controller.business.concretes;
 
 import com.google.gson.Gson;
-import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
-import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
-import com.ozalp.AkgunTest.business.dtos.responses.EmployeeResponse;
-import com.ozalp.AkgunTest.business.mappers.EmployeeMapper;
-import com.ozalp.AkgunTest.business.rules.EmployeeRules;
+import com.ozalp.AkgunTest.controller.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
+import com.ozalp.AkgunTest.model.mappers.EmployeeMapper;
+import com.ozalp.AkgunTest.controller.business.rules.EmployeeRules;
 import com.ozalp.AkgunTest.common.Constant;
 import com.ozalp.AkgunTest.common.Messages;
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.common.results.SuccessDataResult;
-import com.ozalp.AkgunTest.dataAccess.EmployeeRepository;
-import com.ozalp.AkgunTest.entities.concretes.Employee;
-import com.ozalp.AkgunTest.exceptions.errors.EmployeeNotFoundException;
+import com.ozalp.AkgunTest.controller.dataAccess.EmployeeRepository;
+import com.ozalp.AkgunTest.model.entities.concretes.Employee;
+import com.ozalp.AkgunTest.common.exceptions.errors.EmployeeNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

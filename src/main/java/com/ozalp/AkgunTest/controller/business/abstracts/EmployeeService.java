@@ -1,9 +1,9 @@
-package com.ozalp.AkgunTest.business.abstracts;
+package com.ozalp.AkgunTest.controller.business.abstracts;
 
 import com.ozalp.AkgunTest.common.results.DataResult;
-import com.ozalp.AkgunTest.business.dtos.requests.CreateEmployeeRequest;
-import com.ozalp.AkgunTest.business.dtos.responses.EmployeeResponse;
-import com.ozalp.AkgunTest.entities.concretes.Employee;
+import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
+import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
+import com.ozalp.AkgunTest.model.entities.concretes.Employee;
 
 import java.util.List;
 

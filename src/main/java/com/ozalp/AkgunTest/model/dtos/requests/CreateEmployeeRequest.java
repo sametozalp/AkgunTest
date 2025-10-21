@@ -1,4 +1,4 @@
-package com.ozalp.AkgunTest.business.dtos.requests;
+package com.ozalp.AkgunTest.model.dtos.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

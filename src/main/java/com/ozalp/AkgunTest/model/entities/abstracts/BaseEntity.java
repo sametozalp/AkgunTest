@@ -1,4 +1,4 @@
-package com.ozalp.AkgunTest.entities.abstracts;
+package com.ozalp.AkgunTest.model.entities.abstracts;
 
 import jakarta.persistence.*;
 import lombok.Getter;
