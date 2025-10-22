@@ -1,13 +1,13 @@
-package com.ozalp.AkgunTest.controller.business.concretes;
+package com.ozalp.AkgunTest.business.concretes;
 
 import com.ozalp.AkgunTest.common.Messages;
 import com.ozalp.AkgunTest.common.employeeDataService.EmployeeGetDataManager;
 import com.ozalp.AkgunTest.common.exceptions.errors.EmployeeNotFoundException;
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.common.results.SuccessDataResult;
-import com.ozalp.AkgunTest.controller.business.abstracts.EmployeeService;
-import com.ozalp.AkgunTest.controller.business.rules.EmployeeRules;
-import com.ozalp.AkgunTest.controller.dataAccess.EmployeeRepository;
+import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.business.rules.EmployeeRules;
+import com.ozalp.AkgunTest.dataAccess.EmployeeRepository;
 import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
 import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.model.entities.concretes.Employee;

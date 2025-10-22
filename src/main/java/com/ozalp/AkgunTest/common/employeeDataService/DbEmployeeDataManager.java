@@ -2,8 +2,7 @@ package com.ozalp.AkgunTest.common.employeeDataService;
 
 import com.google.gson.Gson;
 import com.ozalp.AkgunTest.common.Constant;
-import com.ozalp.AkgunTest.common.results.SuccessDataResult;
-import com.ozalp.AkgunTest.controller.dataAccess.EmployeeRepository;
+import com.ozalp.AkgunTest.dataAccess.EmployeeRepository;
 import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.model.entities.concretes.Employee;
 import com.ozalp.AkgunTest.model.mappers.EmployeeMapper;

@@ -1,4 +1,4 @@
-package com.ozalp.AkgunTest.controller.dataAccess;
+package com.ozalp.AkgunTest.dataAccess;
 
 import com.ozalp.AkgunTest.model.entities.concretes.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;

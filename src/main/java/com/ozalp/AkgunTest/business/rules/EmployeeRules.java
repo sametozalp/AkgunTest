@@ -1,7 +1,7 @@
-package com.ozalp.AkgunTest.controller.business.rules;
+package com.ozalp.AkgunTest.business.rules;
 
 import com.ozalp.AkgunTest.common.Messages;
-import com.ozalp.AkgunTest.controller.dataAccess.EmployeeRepository;
+import com.ozalp.AkgunTest.dataAccess.EmployeeRepository;
 import com.ozalp.AkgunTest.model.entities.concretes.Employee;
 import com.ozalp.AkgunTest.common.exceptions.errors.RulesException;
 import lombok.AllArgsConstructor;

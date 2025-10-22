@@ -1,6 +1,6 @@
 package com.ozalp.AkgunTest;
 
-import com.ozalp.AkgunTest.controller.business.abstracts.EmployeeService;
+import com.ozalp.AkgunTest.business.abstracts.EmployeeService;
 import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
 import com.ozalp.AkgunTest.model.dtos.responses.EmployeeResponse;
 import com.ozalp.AkgunTest.common.results.DataResult;

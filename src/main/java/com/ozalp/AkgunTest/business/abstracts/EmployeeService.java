@@ -1,4 +1,4 @@
-package com.ozalp.AkgunTest.controller.business.abstracts;
+package com.ozalp.AkgunTest.business.abstracts;
 
 import com.ozalp.AkgunTest.common.results.DataResult;
 import com.ozalp.AkgunTest.model.dtos.requests.CreateEmployeeRequest;
